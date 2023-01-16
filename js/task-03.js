@@ -13,26 +13,47 @@ const images = [
   },
 ];
 
-const imageList = document.querySelector(".gallery");
-imageList.append(...createImageGallery(images));
-imageList.style.listStyle = "none";
-imageList.style.padding = "0px";
-imageList.style.display = "flex";
-imageList.style.gap = "10px";
+const galleryListEl = document.querySelector("ul");
+const element = images
+  .map(function ({ url, alt }) {
+    return `<li><img src = '${url}' alt = '${alt}' width="320" height='200'></li>`;
+  })
+  .join("");
+console.log(galleryListEl);
 
-console.log(imageList.style);
+galleryListEl.insertAdjacentHTML("afterbegin", element);
 
-function createImageGallery(images) {
-  return images.map((imageObject) => {
-    const li = document.createElement("li");
-    const image = document.createElement("img");
-    image.src = imageObject.url;
-    image.alt = imageObject.alt;
-    image.style.width = `360px`;
-    image.style.height = `240px`;
-    li.append(image);
-    return li;
-  });
-}
+document.body.style.margin = "0px";
+console.log("document", document.body.style);
 
-console.log(imageList);
+galleryListEl.style.cssText = `display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  `;
+console.log("galleryListEl.style.cssText", galleryListEl.style);
+
+// const imageList = document.querySelector(".gallery");
+// imageList.append(...createImageGallery(images));
+// imageList.style.listStyle = "none";
+// imageList.style.padding = "0px";
+// imageList.style.display = "flex";
+// imageList.style.gap = "10px";
+
+// console.log(imageList.style);
+
+// function createImageGallery(images) {
+//   return images.map((imageObject) => {
+//     const li = document.createElement("li");
+//     const image = document.createElement("img");
+//     image.src = imageObject.url;
+//     image.alt = imageObject.alt;
+//     image.style.width = `360px`;
+//     image.style.height = `240px`;
+//     li.append(image);
+//     return li;
+//   });
+// }
